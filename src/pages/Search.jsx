@@ -4,7 +4,6 @@ import '../styles/search.css';
 
 class Search extends React.Component {
   state = {
-    search: '',
     activeBtn: true,
   };
 
