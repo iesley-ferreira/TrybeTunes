@@ -17,3 +17,69 @@ form {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+}
+
+#page-search {
+    margin-top: 80px;
+    height: 700px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.album-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 1400px;
+
+}
+
+.album-box {
+    margin: 10px;
+    padding: 10px;
+    white-space: revert;
+    width: 300px;
+    height: 350px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-weight: 900;
+}
+
+.album-box:hover {
+    background-color: #0643c84f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+
+
+.album-img {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.principal {
+    margin: 0 auto;
+    position: relative;
+    left: -330px;
+}
+
+.link-album {
+    color: #000;
+    text-decoration: none;
+}
