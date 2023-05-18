@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300&display=swap');
-
+/* 
 .white-box {
     margin: auto;
     position: relative;
@@ -75,4 +75,54 @@ button {
 
 ::placeholder {
     color: #003BE5;
+} */
+
+.page-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.white-box {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.center {
+  text-align: center;
+}
+
+.logo img {
+  width: 150px;
+  height: auto;
+}
+
+.login-box {
+  margin-top: 20px;
+}
+
+.input-login {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #1ebc9c;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

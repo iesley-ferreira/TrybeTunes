@@ -92,7 +92,7 @@ class Search extends React.Component {
                         alt={ collectionName }
                         className="album-img"
                       />
-                      <p>{collectionName}</p>
+                      <h4>{collectionName}</h4>
                       <p>{artistName}</p>
                     </li>
                   ),
