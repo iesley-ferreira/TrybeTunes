@@ -34,7 +34,7 @@ class Header extends React.Component {
         </div>
 
         <ul className="ul-header">
-          <li>
+          <li className="li-header">
             <NavLink
               activeClassName="selected"
               to="/search"
@@ -46,7 +46,7 @@ class Header extends React.Component {
 
             </NavLink>
           </li>
-          <li>
+          <li className="li-header">
             <NavLink
               activeClassName="selected"
               to="/favorites"
@@ -58,7 +58,7 @@ class Header extends React.Component {
 
             </NavLink>
           </li>
-          <li>
+          <li className="li-header">
             <NavLink
               activeClassName="selected"
               to="/profile"

@@ -5,12 +5,15 @@
 }
 
 .form-search {
+  background-color: #ddf033;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   display: flex;
   gap: 40px;
   justify-content: center;
   padding: 50px;
+  position: fixed;
   width: 100%;
+  z-index: 2;
 }
 
 .main-search {
@@ -35,16 +38,22 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  margin-top: 120px;
   width: 100%;
 }
 
 .album-box {
+  align-items: center;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
   font-weight: 900;
   height: 350px;
+  justify-content: space-around;
   margin: 10px;
   padding: 10px;
+  transition: 0.8s;
   white-space: revert;
   width: 300px;
 }
@@ -52,17 +61,19 @@
 .album-box:hover {
   background-color: #0d9faf21;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  transform: scale(1.07);
+  transition: 0.5s;
 }
 
 .album-img {
   border-radius: 15px;
-  height: 200px;
+  height: 210px;
   padding: 10px;
-  width: 200px;
+  width: 210px;
 }
 
 .link-album {
-  color: #000;
+  color: black;
   text-decoration: none;
 }
 
@@ -78,7 +89,6 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0.3, 0.3, 0.3, 0.4);
-  font-family: 'Audiowide', sans-serif;
   padding: 10px;
   width: 500px;
 }
@@ -90,7 +100,8 @@
   box-shadow: 0 2px 4px rgba(0.3, 0.3, 0.3, 0.4);
   color: black;
   cursor: pointer;
-  font-family: 'Audiowide', Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.3px;
   padding: 10px;
 }
 

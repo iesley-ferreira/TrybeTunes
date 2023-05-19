@@ -2,18 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Carregando from './Carregando';
+import '../styles/musicCard.css';
 
 class MusicCard extends React.Component {
   state = {
     isFavorite: false,
     loading: false,
   };
-
-  // funcao que remove dos favoritos
-  // async remove(prevProps) {
-  //   const { trackId, trackInfo } = this.props;
-  //   const removeSong = await removeSong(trackInfo);
-  // }
 
   // funcao que favorita
   async componentDidMount() {

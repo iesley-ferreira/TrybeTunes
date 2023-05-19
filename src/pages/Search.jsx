@@ -55,17 +55,18 @@ class Search extends React.Component {
           <label htmlFor="search-input">
             <input
               className="input-search"
+              spellCheck="false"
               placeholder="Digite a sua pesquisa"
               data-testid="search-artist-input"
               type="text"
-              name="search"
+              onKeyDown="disabled"
               onChange={ this.handleChange }
             />
           </label>
 
           <button
             className="button-search"
-            type="button"
+            type="submit"
             data-testid="search-artist-button"
             disabled={ disabled }
             onClick={ this.handleClick }

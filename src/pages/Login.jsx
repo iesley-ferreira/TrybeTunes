@@ -58,7 +58,7 @@ class Login extends React.Component {
                       Tunes
                     </h1>
                   </div>
-                  <div className="login-box">
+                  <form className="login-box">
                     <input
                       className="input-login"
                       type="text"
@@ -70,7 +70,7 @@ class Login extends React.Component {
                     />
                     <button
                       className="button-login"
-                      type="button"
+                      type="submit"
                       data-testid="login-submit-button"
                       disabled={ disabled }
                       onClick={ this.submit }
@@ -78,7 +78,7 @@ class Login extends React.Component {
                       Entrar
 
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>

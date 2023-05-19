@@ -35,10 +35,15 @@ class Album extends React.Component {
         <Header />
         { loading ? <Carregando /> : (
           <section className="album-principal">
-            <h2 data-testid="artist-name">{ albumInfo.artistName }</h2>
-            <h4 data-testid="album-name">{ albumInfo.collectionName }</h4>
-            <img src={ albumInfo.artworkUrl100 } alt={ albumInfo.collectionName } />
-
+            <div className="top-principal-album">
+              <div className="display-top">
+                <h2 data-testid="artist-name">{ albumInfo.artistName }</h2>
+                <h4 data-testid="album-name">{ albumInfo.collectionName }</h4>
+              </div>
+              <div className="img-top-album">
+                <img src={ albumInfo.artworkUrl100 } alt={ albumInfo.collectionName } />
+              </div>
+            </div>
             <div className="musics">
               {
                 albumMusics.filter((_, index) => index !== 0)
