@@ -44,36 +44,47 @@ class Login extends React.Component {
       );
     }
     return (
-      loading ? <Carregando /> : (
-        <div data-testid="page-login" className="page-login">
-          <div className="white-box">
-            <div className="center">
-              <div className="logo">
-                <img src="" alt="" />
-              </div>
-              <div className="login-box">
-                <input
-                  className="input-login"
-                  type="text"
-                  data-testid="login-name-input"
-                  name="user"
-                  placeholder="qual é o seu nome?"
-                  onChange={ this.handleChange }
-                />
-                <button
-                  type="button"
-                  data-testid="login-submit-button"
-                  disabled={ disabled }
-                  onClick={ this.submit }
-                >
-                  Entrar
+      <div className="fundo-login">
+        {
+          loading ? <Carregando /> : (
+            <div data-testid="page-login" className="page-login">
+              <div className="white-box-login">
+                <div className="center-login">
+                  <div className="logo-login">
+                    <h1>
+                      Trybe
+                    </h1>
+                    <h1>
+                      Tunes
+                    </h1>
+                  </div>
+                  <div className="login-box">
+                    <input
+                      className="input-login"
+                      type="text"
+                      spellCheck="false"
+                      data-testid="login-name-input"
+                      name="user"
+                      placeholder="qual é o seu nome?"
+                      onChange={ this.handleChange }
+                    />
+                    <button
+                      className="button-login"
+                      type="button"
+                      data-testid="login-submit-button"
+                      disabled={ disabled }
+                      onClick={ this.submit }
+                    >
+                      Entrar
 
-                </button>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )
+          )
+        }
+      </div>
     );
   }
 }

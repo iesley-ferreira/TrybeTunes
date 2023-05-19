@@ -9,6 +9,13 @@ class MusicCard extends React.Component {
     loading: false,
   };
 
+  // funcao que remove dos favoritos
+  // async remove(prevProps) {
+  //   const { trackId, trackInfo } = this.props;
+  //   const removeSong = await removeSong(trackInfo);
+  // }
+
+  // funcao que favorita
   async componentDidMount() {
     const favList = await getFavoriteSongs();
     console.log(favList);

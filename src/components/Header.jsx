@@ -22,19 +22,26 @@ class Header extends React.Component {
     const { loading, userName } = this.state;
     if (loading) return <Carregando />;
     return (
-      <header data-testid="header-component">
+      <header data-testid="header-component" className="header-container">
 
-        <div className="logo">
-          <img src="" alt="" />
+        <div className="logo-login-header">
+          <h1>
+            Trybe
+            {' '}
+            <br />
+            Tunes
+          </h1>
         </div>
 
-        <ul>
+        <ul className="ul-header">
           <li>
             <NavLink
               activeClassName="selected"
               to="/search"
               data-testid="link-to-search"
             >
+              <i className="fa-sharp fa-solid fa-magnifying-glass" />
+              &nbsp;&nbsp;&nbsp;
               Search
 
             </NavLink>
@@ -45,6 +52,8 @@ class Header extends React.Component {
               to="/favorites"
               data-testid="link-to-favorites"
             >
+              <i className="fa-regular fa-star" />
+              &nbsp;&nbsp;
               Favoritas
 
             </NavLink>
@@ -55,13 +64,15 @@ class Header extends React.Component {
               to="/profile"
               data-testid="link-to-profile"
             >
-              <p>Search</p>
+              <i className="fa-regular fa-user" />
+              &nbsp;&nbsp;
+              Profile
 
             </NavLink>
           </li>
         </ul>
 
-        <div className="bem-vindo">
+        <div className="bem-vindo-header">
           <h1 data-testid="header-user-name">
             Bem vindo:
             {' '}

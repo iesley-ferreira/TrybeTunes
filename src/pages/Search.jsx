@@ -49,11 +49,12 @@ class Search extends React.Component {
     }
 
     return (
-      <div data-testid="page-search" id="page-search">
+      <div data-testid="page" className="page-search">
         <Header />
-        <form>
+        <form className="form-search">
           <label htmlFor="search-input">
             <input
+              className="input-search"
               placeholder="Digite a sua pesquisa"
               data-testid="search-artist-input"
               type="text"
@@ -63,6 +64,7 @@ class Search extends React.Component {
           </label>
 
           <button
+            className="button-search"
             type="button"
             data-testid="search-artist-button"
             disabled={ disabled }
@@ -72,14 +74,26 @@ class Search extends React.Component {
           </button>
         </form>
 
-        <main>
+        <main className="main-search">
           {albunsList.length > 0 && (
             <div className="principal">
-              <h3>{`Resultado de álbuns de: ${artist}`}</h3>
+              <h3
+                className="resultado-pesquisa"
+              >
+                {`Resultado de álbuns de: ${artist}`}
+
+              </h3>
               <ul className="album-list">
                 {albunsList.map(
                   ({ collectionId, artworkUrl100, collectionName, artistName }) => (
                     <li key={ collectionId } className="album-box">
+                      <h4>{collectionName}</h4>
+                      <img
+                        src={ artworkUrl100 }
+                        alt={ collectionName }
+                        className="album-img"
+                      />
+                      <p>{artistName}</p>
                       <Link
                         className="link-album"
                         to={ `album/${collectionId}` }
@@ -87,13 +101,6 @@ class Search extends React.Component {
                       >
                         Mais informações
                       </Link>
-                      <img
-                        src={ artworkUrl100 }
-                        alt={ collectionName }
-                        className="album-img"
-                      />
-                      <h4>{collectionName}</h4>
-                      <p>{artistName}</p>
                     </li>
                   ),
                 )}
