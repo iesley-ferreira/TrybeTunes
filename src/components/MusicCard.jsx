@@ -13,7 +13,6 @@ class MusicCard extends React.Component {
   // funcao que favorita
   async componentDidMount() {
     const favList = await getFavoriteSongs();
-    console.log(favList);
     const { trackId } = this.props;
     this.setState({
       isFavorite: favList.some((music) => music.trackId === trackId),
@@ -34,6 +33,8 @@ class MusicCard extends React.Component {
     const { trackName, previewUrl, trackId } = this.props;
     const { isFavorite, loading } = this.state;
     if (loading) return <Carregando />;
+    const liked = <i className="fa-sharp fa-solid fa-star" />;
+    const noLiked = <i className="fa-regular fa-star" />;
     return (
       <div className="music-card">
         <h2>{ trackName }</h2>
@@ -45,14 +46,17 @@ class MusicCard extends React.Component {
           <code>audio</code>
           .
         </audio>
-        <label htmlFor="">
-          Favorita
-          <input
-            type="checkbox"
-            onChange={ this.handleFavorite }
-            checked={ isFavorite }
-            data-testid={ `checkbox-music-${trackId}` }
-          />
+        <label className="switch-favorito">
+          <span className="switch-text">Favorita</span>
+          <div className="switch-wrapper">
+            <input
+              type="checkbox"
+              onChange={ this.handleFavorite }
+              checked={ isFavorite }
+              data-testid={ `checkbox-music-${trackId}` }
+            />
+            { isFavorite ? liked : noLiked }
+          </div>
         </label>
       </div>
     );

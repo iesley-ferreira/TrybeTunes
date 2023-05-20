@@ -111,3 +111,10 @@
   color: black;
   cursor: not-allowed;
 }
+
+.artista-nao-encontrado {
+  font-size: 30px;
+  font-weight: 900;
+  padding-left: 300px;
+  position: relative;
+}

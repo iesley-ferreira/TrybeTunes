@@ -31,15 +31,13 @@ class Search extends React.Component {
 
   handleChange = ({ target }) => {
     const { value } = target;
+    const condition = value.length < 2;
     this.setState({
       disabled: true,
-    });
-    if (value.length >= 2) {
-      this.setState({
-        search: value,
-        disabled: false,
-      });
-    }
+    }, () => this.setState({
+      search: value,
+      disabled: condition,
+    }));
   };
 
   render() {
@@ -49,7 +47,7 @@ class Search extends React.Component {
     }
 
     return (
-      <div data-testid="page" className="page-search">
+      <div data-testid="page-search" className="page-search">
         <Header />
         <form className="form-search">
           <label htmlFor="search-input">
@@ -59,7 +57,6 @@ class Search extends React.Component {
               placeholder="Digite a sua pesquisa"
               data-testid="search-artist-input"
               type="text"
-              onKeyDown="disabled"
               onChange={ this.handleChange }
             />
           </label>
@@ -110,7 +107,9 @@ class Search extends React.Component {
           )}
 
           {artist.length > 0 && albunsList.length === 0 && (
-            <p>Nenhum álbum foi encontrado</p>
+            <div className="artista-nao-encontrado">
+              <p>Nenhum álbum foi encontrado</p>
+            </div>
           )}
         </main>
 

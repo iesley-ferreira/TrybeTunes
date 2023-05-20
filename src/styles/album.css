@@ -4,7 +4,8 @@
   flex-direction: column;
   gap: 10px;
   justify-content: center;
-  margin-top: 50px;
+  margin-left: 280px;
+  margin-top: 134px;
 }
 
 .musics {
@@ -13,9 +14,8 @@
   flex-flow: row wrap;
   gap: 40px;
   justify-content: center;
-  margin-left: 190px;
-  margin-top: 150px;
-  width: 70%;
+  padding: 60px;
+  width: 100%;
 }
 
 .display-top {

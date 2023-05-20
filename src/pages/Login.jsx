@@ -46,7 +46,7 @@ class Login extends React.Component {
     return (
       <div className="fundo-login">
         {
-          loading ? <Carregando /> : (
+          loading ? <div className="carregando-centro"><Carregando /></div> : (
             <div data-testid="page-login" className="page-login">
               <div className="white-box-login">
                 <div className="center-login">
