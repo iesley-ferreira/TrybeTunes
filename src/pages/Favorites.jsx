@@ -1,29 +1,59 @@
 import React from 'react';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
-import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Carregando from '../components/Carregando';
 import '../styles/favorites.css';
 
 class Favorites extends React.Component {
   state = {
     loading: true,
-    list: [],
+    albumFavorites: [],
   };
 
-  async componentDidMount() {
-    const list = await getFavoriteSongs();
-    this.setState({ list, loading: false });
+  componentDidMount() {
+    this.getMusicsInfo();
   }
 
-  removeFavorite = (trackInfo) => {
-    const { list } = this.state;
-    const newList = list.filter((music) => music.trackId !== trackInfo.trackId);
-    this.setState({ list: newList });
+  getMusicsInfo = async () => {
+    this.setState({ loading: true });
+
+    const albumFavorites = await getFavoriteSongs();
+
+    this.setState({
+      loading: false,
+      albumFavorites,
+    });
+  };
+
+  changeFavorite = (track) => {
+    this.setState({
+      loading: true,
+    }, async () => {
+      const { albumFavorites } = this.state;
+      const isFavoriteSong = albumFavorites
+        .some(({ trackId }) => track.trackId === trackId);
+
+      if (isFavoriteSong) {
+        await removeSong(track);
+      } else {
+        await addSong(track);
+      }
+
+      const stateFavoriteSongs = await getFavoriteSongs();
+
+      this.setState({
+        albumFavorites: stateFavoriteSongs,
+        loading: false,
+      });
+    });
   };
 
   render() {
-    const { list, loading } = this.state;
+    const {
+      albumFavorites,
+      loading,
+    } = this.state;
 
     return (
       loading ? (
@@ -35,14 +65,15 @@ class Favorites extends React.Component {
               <h1>Favoritos</h1>
             </div>
             <div className="list-favorites">
-              {list.map((music) => (
+              {albumFavorites.map((music) => (
                 <MusicCard
                   key={ music.trackId }
-                  trackInfo={ music }
                   trackId={ music.trackId }
                   trackName={ music.trackName }
-                  previewUrl={ music.trackViewUrl }
-                  removeFavorite={ this.removeFavorite }
+                  previewUrl={ music.previewUrl }
+                  changeFavorite={ this.changeFavorite }
+                  trackInfo={ music }
+                  favList={ albumFavorites }
                 />
               ))}
             </div>

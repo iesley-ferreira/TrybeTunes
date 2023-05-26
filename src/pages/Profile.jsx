@@ -16,7 +16,6 @@ class Profile extends React.Component {
       loading: true,
     });
     const userInfo = await getUser();
-    console.log(userInfo);
     this.setState({
       loading: false,
       user: userInfo,
@@ -41,14 +40,14 @@ class Profile extends React.Component {
                 <img
                   className="img-perfil"
                   data-testid="profile-image"
-                  src={ image || 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50' }
+                  src={ image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR086Zb6H2WMJadyKUFDK12NuMTAVm8dKV_WjtbdSAXlnzz1Z88aw9crG7zZFH8nkocjyY&usqp=CAU' }
                   alt="foto-do-perfil"
                 />
                 <Link to="/profile/edit" className="link-perfil">Editar perfil</Link>
               </div>
               <div className="name-email-description">
 
-                <h4>{name || 'nome:'}</h4>
+                <h4 className="nome2-profile">{name || 'nome:'}</h4>
                 <h4>{email || 'email:'}</h4>
                 <h4>{description || 'descrição:'}</h4>
               </div>

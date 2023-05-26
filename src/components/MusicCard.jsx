@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Carregando from './Carregando';
 import '../styles/musicCard.css';
 
@@ -11,33 +10,31 @@ class MusicCard extends React.Component {
   };
 
   async componentDidMount() {
-    const favList = await getFavoriteSongs();
-    const { trackId } = this.props;
-    this.setState({
-      isFavorite: favList.some((music) => music.trackId === trackId),
-    });
+    this.getFavorite();
   }
 
-  handleFavorite = async ({ target }) => {
-    const { trackInfo, removeFavorite } = this.props;
+  getFavorite = () => {
+    const {
+      trackInfo,
+      favList,
+    } = this.props;
+
+    const isFavorite = favList
+      .some(({ trackId }) => trackInfo.trackId === trackId);
 
     this.setState({
-      loading: true,
-      isFavorite: target.checked,
+      isFavorite,
     });
-    await addSong(trackInfo);
-    this.setState({ loading: false });
+  };
 
-    if (target.checked === false) {
-      this.setState({
-        loading: true,
-      });
-      await removeSong(trackInfo);
-      this.setState({
-        loading: false,
-      });
-    }
-    removeFavorite(trackInfo);
+  handleFavorite = () => {
+    const {
+      trackInfo,
+      changeFavorite,
+    } = this.props;
+    console.log(changeFavorite);
+    changeFavorite(trackInfo);
+    this.getFavorite();
   };
 
   render() {
@@ -57,6 +54,7 @@ class MusicCard extends React.Component {
           <code>audio</code>
           .
         </audio>
+
         <label className="switch-favorito">
           <span className="switch-text">Favorita</span>
           <div className="switch-wrapper">
@@ -65,7 +63,6 @@ class MusicCard extends React.Component {
               onChange={ this.handleFavorite }
               checked={ isFavorite }
               data-testid={ `checkbox-music-${trackId}` }
-
             />
             { isFavorite ? liked : noLiked }
           </div>
@@ -84,7 +81,10 @@ MusicCard.propTypes = {
     previewUrl: PropTypes.string.isRequired,
     trackId: PropTypes.number.isRequired,
   }).isRequired,
-  removeFavorite: PropTypes.func.isRequired,
+  favList: PropTypes.arrayOf(PropTypes.shape({
+    trackId: PropTypes.number.isRequired,
+  })).isRequired,
+  changeFavorite: PropTypes.func.isRequired,
 };
 
 export default MusicCard;

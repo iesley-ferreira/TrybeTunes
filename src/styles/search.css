@@ -10,7 +10,7 @@
   display: flex;
   gap: 40px;
   justify-content: center;
-  padding: 50px;
+  padding: 40px 0 40px 280px;
   position: fixed;
   width: 100%;
   z-index: 2;
@@ -38,7 +38,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin-top: 120px;
+  margin-top: 40px;
   width: 100%;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .resultado-pesquisa {
-  padding: 20px;
+  margin-top: 160px;
 }
 
 .principal {
@@ -115,6 +115,6 @@
 .artista-nao-encontrado {
   font-size: 30px;
   font-weight: 900;
-  padding-left: 300px;
+  padding-top: 400px;
   position: relative;
 }

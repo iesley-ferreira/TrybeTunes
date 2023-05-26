@@ -47,72 +47,73 @@ class Search extends React.Component {
     }
 
     return (
-      <div data-testid="page-search" className="page-search">
+      <div data-testid="page-search">
         <Header />
-        <form className="form-search">
-          <label htmlFor="search-input">
-            <input
-              className="input-search"
-              spellCheck="false"
-              placeholder="Digite a sua pesquisa"
-              data-testid="search-artist-input"
-              type="text"
-              onChange={ this.handleChange }
-            />
-          </label>
+        <div className="page-search">
+          <form className="form-search">
+            <label htmlFor="search-input">
+              <input
+                className="input-search"
+                spellCheck="false"
+                placeholder="Digite a sua pesquisa"
+                data-testid="search-artist-input"
+                type="text"
+                onChange={ this.handleChange }
+              />
+            </label>
 
-          <button
-            className="button-search"
-            type="submit"
-            data-testid="search-artist-button"
-            disabled={ disabled }
-            onClick={ this.handleClick }
-          >
-            Pesquisar
-          </button>
-        </form>
+            <button
+              className="button-search"
+              type="submit"
+              data-testid="search-artist-button"
+              disabled={ disabled }
+              onClick={ this.handleClick }
+            >
+              Pesquisar
+            </button>
+          </form>
 
-        <main className="main-search">
-          {albunsList.length > 0 && (
-            <div className="principal">
-              <h3
-                className="resultado-pesquisa"
-              >
-                {`Resultado de álbuns de: ${artist}`}
+          <main className="main-search">
+            {loading ? <Carregando /> : albunsList.length > 0 && (
+              <div className="principal">
+                <h3
+                  className="resultado-pesquisa"
+                >
+                  {`Resultado de álbuns de: ${artist}`}
 
-              </h3>
-              <ul className="album-list">
-                {albunsList.map(
-                  ({ collectionId, artworkUrl100, collectionName, artistName }) => (
-                    <li key={ collectionId } className="album-box">
-                      <h4>{collectionName}</h4>
-                      <img
-                        src={ artworkUrl100 }
-                        alt={ collectionName }
-                        className="album-img"
-                      />
-                      <p>{artistName}</p>
-                      <Link
-                        className="link-album"
-                        to={ `album/${collectionId}` }
-                        data-testid={ `link-to-album-${collectionId}` }
-                      >
-                        Mais informações
-                      </Link>
-                    </li>
-                  ),
-                )}
-              </ul>
-            </div>
-          )}
+                </h3>
+                <ul className="album-list">
+                  {albunsList.map(
+                    ({ collectionId, artworkUrl100, collectionName, artistName }) => (
+                      <li key={ collectionId } className="album-box">
+                        <h4>{collectionName}</h4>
+                        <img
+                          src={ artworkUrl100 }
+                          alt={ collectionName }
+                          className="album-img"
+                        />
+                        <p>{artistName}</p>
+                        <Link
+                          className="link-album"
+                          to={ `album/${collectionId}` }
+                          data-testid={ `link-to-album-${collectionId}` }
+                        >
+                          Mais informações
+                        </Link>
+                      </li>
+                    ),
+                  )}
+                </ul>
+              </div>
+            )}
 
-          {artist.length > 0 && albunsList.length === 0 && (
-            <div className="artista-nao-encontrado">
-              <p>Nenhum álbum foi encontrado</p>
-            </div>
-          )}
-        </main>
-
+            {!loading && artist.length > 0 && albunsList.length === 0 && (
+              <div className="artista-nao-encontrado">
+                <p>Nenhum álbum foi encontrado</p>
+              </div>
+            )}
+          </main>
+        </div>
       </div>
     );
   }

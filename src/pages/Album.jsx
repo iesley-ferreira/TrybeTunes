@@ -4,13 +4,15 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import Carregando from '../components/Carregando';
 import MusicCard from '../components/MusicCard';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import '../styles/album.css';
 
 class Album extends React.Component {
   state = {
     loading: true,
-    albumInfo: [],
+    albumInfo: {},
     albumMusics: [],
+    albumFavorites: [],
   };
 
   componentDidMount() {
@@ -19,17 +21,50 @@ class Album extends React.Component {
 
   getMusicsInfo = async () => {
     this.setState({ loading: true });
+
     const { match: { params: { id } } } = this.props;
     const album = await getMusics(id);
+    const albumFavorites = await getFavoriteSongs();
+
     this.setState({
       loading: false,
       albumInfo: album[0],
-      albumMusics: album,
+      albumMusics: album.slice(1),
+      albumFavorites,
+    });
+  };
+
+  changeFavorite = (track) => {
+    this.setState({
+      loading: true,
+    }, async () => {
+      const { albumFavorites } = this.state;
+      const isFavoriteSong = albumFavorites
+        .some(({ trackId }) => track.trackId === trackId);
+
+      if (isFavoriteSong) {
+        await removeSong(track);
+      } else {
+        await addSong(track);
+      }
+
+      const stateFavoriteSongs = await getFavoriteSongs();
+
+      this.setState({
+        albumFavorites: stateFavoriteSongs,
+        loading: false,
+      });
     });
   };
 
   render() {
-    const { loading, albumInfo, albumMusics } = this.state;
+    const {
+      loading,
+      albumInfo,
+      albumMusics,
+      albumFavorites,
+    } = this.state;
+
     return (
       <div data-testid="page-album">
         <Header />
@@ -47,14 +82,15 @@ class Album extends React.Component {
             </div>
             <div className="musics">
               {albumMusics
-                .filter((_, index) => index !== 0)
                 .map((music) => (
                   <MusicCard
                     key={ music.trackId }
                     trackId={ music.trackId }
                     trackName={ music.trackName }
                     previewUrl={ music.previewUrl }
+                    changeFavorite={ this.changeFavorite }
                     trackInfo={ music }
+                    favList={ albumFavorites }
                   />
                 ))}
             </div>

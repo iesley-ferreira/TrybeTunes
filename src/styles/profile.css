@@ -15,6 +15,7 @@
   flex-direction: column;
   justify-content: center;
   margin-top: 200px;
+  min-width: 400px;
   padding: 40px;
   width: 35%;
 }
@@ -50,4 +51,8 @@
   gap: 20px;
   min-width: 70%;
   padding: 20px;
+}
+
+.nome2-profile {
+  display: none;
 }
