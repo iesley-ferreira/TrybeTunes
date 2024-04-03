@@ -1,9 +1,9 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import logo from "../assets/trybeTunes-logo.png";
 import SoundWave from "../components/SoundWave";
 import { createUser } from "../services/userAPI";
 import "./styles/Login.css";
+import logo from "/public/trybeTunes-logo.png";
 
 class Login extends React.Component {
   state = {

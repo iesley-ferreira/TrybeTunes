@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
-import agulha from "../assets/agulha-toca-disco.png";
-import arrowSvg from "../assets/arrow.svg";
 import {
   useAlbunsList,
   useArtist,
@@ -10,6 +8,8 @@ import {
 } from "../context/TrybeTunesContext";
 import searchAlbumsAPI from "../services/searchAlbumsAPI";
 import "./styles/SuggestionsCard.css";
+import agulha from "/public/agulha-toca-disco.png";
+import arrowSvg from "/public/arrow.svg";
 
 const SuggestionsCard = () => {
   const [hoveredCardId, setHoveredCardId] = useState(null);
