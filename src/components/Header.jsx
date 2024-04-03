@@ -2,9 +2,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import logo from "../assets/logo-small.png";
 import { getUser } from "../services/userAPI";
 import "./styles/header.css";
-import logo from "/public/logo-small.png";
 
 const Header = () => {
   const [loading, setLoading] = useState(true);
