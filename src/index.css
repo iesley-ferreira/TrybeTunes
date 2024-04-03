@@ -1,7 +1,6 @@
 @font-face {
   font-family: "ITC Avant Garde Pro Bold";
-  src: url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/fonts/ITCAvantGardePro-Bold.otf")
-    format("opentype");
+  src: url("/public/ITCAvantGardePro-Bold.otf") format("opentype");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -12,12 +11,9 @@
   src:
     local("ITC Avant Garde Gothic Bold"),
     local("ITC-Avant-Garde-Gothic-Bold"),
-    url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/fonts/ITCAvantGardeStd-Bold.woff2")
-      format("woff2"),
-    url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/fonts/ITCAvantGardeStd-Bold.woff")
-      format("woff"),
-    url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/fonts/ITCAvantGardeStd-Bold.ttf")
-      format("truetype");
+    url("/public/ITCAvantGardeStd-Bold.woff2") format("woff2"),
+    url("/public/ITCAvantGardeStd-Bold.woff") format("woff"),
+    url("/public/ITCAvantGardeStd-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -28,12 +24,9 @@
   src:
     local("ITC Avant Garde Gothic Bk"),
     local("ITC-Avant-Garde-Gothic-Bk"),
-    url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/fonts/ITCAvantGardeStd-Bk.woff2")
-      format("woff2"),
-    url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/fonts/ITCAvantGardeStd-Bk.woff")
-      format("woff"),
-    url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/fonts/ITCAvantGardeStd-Bk.ttf")
-      format("truetype");
+    url("/public/ITCAvantGardeStd-Bk.woff2") format("woff2"),
+    url("/public/ITCAvantGardeStd-Bk.woff") format("woff"),
+    url("/public/ITCAvantGardeStd-Bk.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -44,12 +37,9 @@
   src:
     local("ITC Avant Garde Gothic Demi"),
     local("ITC-Avant-Garde-Gothic-Demi"),
-    url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/fonts/ITCAvantGardeStd-Demi.woff2")
-      format("woff2"),
-    url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/fonts/ITCAvantGardeStd-Demi.woff")
-      format("woff"),
-    url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/fonts/ITCAvantGardeStd-Demi.ttf")
-      format("truetype");
+    url("/public/ITCAvantGardeStd-Demi.woff2") format("woff2"),
+    url("/public/ITCAvantGardeStd-Demi.woff") format("woff"),
+    url("/public/ITCAvantGardeStd-Demi.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
