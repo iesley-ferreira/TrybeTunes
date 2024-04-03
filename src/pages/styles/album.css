@@ -1,5 +1,5 @@
 .page-album-container {
-  background-image: url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/background5.jpg");
+  background-image: url("/public/background5.jpg");
   background-attachment: fixed;
   display: flex;
   flex-direction: row;
