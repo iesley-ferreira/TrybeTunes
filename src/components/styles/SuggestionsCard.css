@@ -65,7 +65,7 @@
   top: 12px;
   left: 38px;
   object-fit: cover;
-  transform: rotate(-28deg);
+  transform: rotate(-24deg);
   opacity: 0.9;
 }
 
@@ -76,7 +76,7 @@
 
 .card-image:hover {
   cursor: pointer;
-  /* transform: scale(1.05); */
+  transform: scale(1.02);
   border-radius: 20px;
   padding: 11px;
   background-color: rgba(63, 63, 53, 0.651);
@@ -102,7 +102,7 @@
   }
 }
 
-.card-image::before {
+/* .card-image::before {
   background-color: rgba(14, 13, 13, 0.925);
   width: 36px;
   height: 36px;
@@ -116,4 +116,4 @@
   height: 12px;
   top: 50%;
   left: 50%;
-}
+} */

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import AlbumsCard from "../components/AlbumsCard";
 import CanvasLoader from "../components/CanvasLoader";
@@ -71,7 +72,7 @@ const SearchComponentPage = () => {
             <input
               className='input-search'
               spellCheck='false'
-              placeholder='Pesquise seu artista preferido'
+              placeholder='Search your favorite artist'
               data-testid='search-artist-input'
               type='text'
               value={search}

@@ -1,67 +1,58 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import PropTypes from "prop-types";
 import React from "react";
+import { useLoading } from "../context/TrybeTunesContext";
 import Carregando from "./Carregando";
 import Liked from "./Liked";
 import NoLiked from "./NoLiked";
 import "./styles/musicCard.css";
 
-class MusicCard extends React.Component {
-  state = {
-    isFavorite: false,
-    loading: false,
-  };
+function MusicCard(props) {
+  const { trackName, previewUrl, trackId, trackInfo, favList, changeFavorite } = props;
+  const [isFavorite, setFavorite] = React.useState(false);
+  const [loading, setLoading] = useLoading(false);
 
-  async componentDidMount() {
-    this.getFavorite();
-  }
+  React.useEffect(() => {
+    getFavorite();
+  }, []);
 
-  getFavorite = () => {
-    const { trackInfo, favList } = this.props;
-
+  const getFavorite = () => {
     const isFavorite = favList.some(({ trackId }) => trackInfo.trackId === trackId);
-
-    this.setState({
-      isFavorite,
-    });
+    setFavorite(isFavorite);
   };
 
-  handleFavorite = () => {
-    const { trackInfo, changeFavorite } = this.props;
-    console.log(changeFavorite);
+  const handleFavorite = () => {
     changeFavorite(trackInfo);
-    this.getFavorite();
+    getFavorite();
   };
 
-  render() {
-    const { trackName, previewUrl, trackId } = this.props;
-    const { isFavorite, loading } = this.state;
-    if (loading) return <Carregando />;
+  if (loading) return <Carregando />;
 
-    return (
-      <div className='music-card-container'>
-        <div className='music-card'>
-          <div className='title-song'>
-            <h2>{trackName}</h2>
-            <label className='switch-favorito'>
-              <div className='switch-wrapper'>
-                <input
-                  type='checkbox'
-                  onChange={this.handleFavorite}
-                  checked={isFavorite}
-                  data-testid={`checkbox-music-${trackId}`}
-                />
-                {isFavorite ? <Liked /> : <NoLiked />}
-              </div>
-            </label>
-          </div>
-          <audio data-testid='audio-component' src={previewUrl} controls>
-            <track kind='captions' />O seu navegador não suporta o elemento{" "}
-            <code>audio</code>.
-          </audio>
+  return (
+    <div className='music-card-container'>
+      <div className='music-card'>
+        <div className='title-song'>
+          <h2>{trackName}</h2>
+          <label className='switch-favorito'>
+            <div className='switch-wrapper'>
+              <input
+                type='checkbox'
+                onChange={handleFavorite}
+                checked={isFavorite}
+                data-testid={`checkbox-music-${trackId}`}
+              />
+              {isFavorite ? <Liked /> : <NoLiked />}
+            </div>
+          </label>
         </div>
+        <audio data-testid='audio-component' src={previewUrl} controls>
+          <track kind='captions' />O seu navegador não suporta o elemento{" "}
+          <code>audio</code>.
+        </audio>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 MusicCard.propTypes = {

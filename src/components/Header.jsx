@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo-small.png";
@@ -55,7 +57,7 @@ const Header = () => {
         </ul>
 
         <div className='bem-vindo-header'>
-          <h1 data-testid='header-user-name'>Well Come: {userName}</h1>
+          <h1 data-testid='header-user-name'>Welcome: {userName}</h1>
         </div>
       </div>
     </header>

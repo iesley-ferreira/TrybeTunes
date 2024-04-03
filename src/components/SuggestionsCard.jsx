@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import agulha from "../assets/agulha-toca-disco.png";
 import arrowSvg from "../assets/arrow.svg";
