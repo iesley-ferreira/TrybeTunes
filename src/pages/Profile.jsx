@@ -1,9 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import { getUser } from '../services/userAPI';
-import Carregando from '../components/Carregando';
-import '../styles/profile.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import perfilImg from "../assets/user2.png";
+import CanvasLoader from "../components/CanvasLoader";
+import Header from "../components/Header";
+import { getUser } from "../services/userAPI";
+import "./styles/profile.css";
 
 class Profile extends React.Component {
   state = {
@@ -26,35 +27,35 @@ class Profile extends React.Component {
     const { loading, user } = this.state;
     const { name, email, image, description } = user;
     return (
-      <div data-testid="page-profile" className="page-perfil">
+      <div className='page-perfil' data-testid='page-profile'>
         <Header />
-        {
-          loading ? <Carregando /> : (
-            <div className="main-perfil">
-              <h1>
-                <i className="fa-solid fa-user" />
-                &nbsp;&nbsp;&nbsp;
-                {name}
-              </h1>
-              <div className="img-link">
-                <img
-                  className="img-perfil"
-                  data-testid="profile-image"
-                  src={ image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR086Zb6H2WMJadyKUFDK12NuMTAVm8dKV_WjtbdSAXlnzz1Z88aw9crG7zZFH8nkocjyY&usqp=CAU' }
-                  alt="foto-do-perfil"
-                />
-                <Link to="/profile/edit" className="link-perfil">Editar perfil</Link>
-              </div>
-              <div className="name-email-description">
-
-                <h4 className="nome2-profile">{name || 'nome:'}</h4>
-                <h4>{email || 'email:'}</h4>
-                <h4>{description || 'descrição:'}</h4>
+        {loading ? (
+          <div className='canvasLoader__container'>
+            <CanvasLoader id='canvas' width='250' height='250' />
+          </div>
+        ) : (
+          <div className='main-perfil'>
+            <div className='img-link'>
+              <img
+                className='img-perfil'
+                data-testid='profile-image'
+                src={image || perfilImg}
+                alt='foto-do-perfil'
+              />
+              <div className='p-edit'>
+                <h1>{name}</h1>
+                <Link to='/profile/edit' className='link-perfil'>
+                  Editar perfil
+                </Link>
               </div>
             </div>
-          )
-        }
-
+            <div className='name-email-description'>
+              <h4 className='nome2-profile'>{name || "nome:"}</h4>
+              <h4>{email || "email:"}</h4>
+              <h4>{description || "descrição:"}</h4>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

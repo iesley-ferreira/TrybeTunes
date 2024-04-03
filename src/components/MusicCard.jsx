@@ -1,7 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Carregando from './Carregando';
-import '../styles/musicCard.css';
+import PropTypes from "prop-types";
+import React from "react";
+import Carregando from "./Carregando";
+import Liked from "./Liked";
+import NoLiked from "./NoLiked";
+import "./styles/musicCard.css";
 
 class MusicCard extends React.Component {
   state = {
@@ -14,13 +16,9 @@ class MusicCard extends React.Component {
   }
 
   getFavorite = () => {
-    const {
-      trackInfo,
-      favList,
-    } = this.props;
+    const { trackInfo, favList } = this.props;
 
-    const isFavorite = favList
-      .some(({ trackId }) => trackInfo.trackId === trackId);
+    const isFavorite = favList.some(({ trackId }) => trackInfo.trackId === trackId);
 
     this.setState({
       isFavorite,
@@ -28,10 +26,7 @@ class MusicCard extends React.Component {
   };
 
   handleFavorite = () => {
-    const {
-      trackInfo,
-      changeFavorite,
-    } = this.props;
+    const { trackInfo, changeFavorite } = this.props;
     console.log(changeFavorite);
     changeFavorite(trackInfo);
     this.getFavorite();
@@ -41,32 +36,29 @@ class MusicCard extends React.Component {
     const { trackName, previewUrl, trackId } = this.props;
     const { isFavorite, loading } = this.state;
     if (loading) return <Carregando />;
-    const liked = <i className="fa-sharp fa-solid fa-star" />;
-    const noLiked = <i className="fa-regular fa-star" />;
-    return (
-      <div className="music-card">
-        <h2>{ trackName }</h2>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
-          <track kind="captions" />
-          O seu navegador não suporta o elemento
-          {' '}
-          {' '}
-          <code>audio</code>
-          .
-        </audio>
 
-        <label className="switch-favorito">
-          <span className="switch-text">Favorita</span>
-          <div className="switch-wrapper">
-            <input
-              type="checkbox"
-              onChange={ this.handleFavorite }
-              checked={ isFavorite }
-              data-testid={ `checkbox-music-${trackId}` }
-            />
-            { isFavorite ? liked : noLiked }
+    return (
+      <div className='music-card-container'>
+        <div className='music-card'>
+          <div className='title-song'>
+            <h2>{trackName}</h2>
+            <label className='switch-favorito'>
+              <div className='switch-wrapper'>
+                <input
+                  type='checkbox'
+                  onChange={this.handleFavorite}
+                  checked={isFavorite}
+                  data-testid={`checkbox-music-${trackId}`}
+                />
+                {isFavorite ? <Liked /> : <NoLiked />}
+              </div>
+            </label>
           </div>
-        </label>
+          <audio data-testid='audio-component' src={previewUrl} controls>
+            <track kind='captions' />O seu navegador não suporta o elemento{" "}
+            <code>audio</code>.
+          </audio>
+        </div>
       </div>
     );
   }
@@ -81,9 +73,11 @@ MusicCard.propTypes = {
     previewUrl: PropTypes.string.isRequired,
     trackId: PropTypes.number.isRequired,
   }).isRequired,
-  favList: PropTypes.arrayOf(PropTypes.shape({
-    trackId: PropTypes.number.isRequired,
-  })).isRequired,
+  favList: PropTypes.arrayOf(
+    PropTypes.shape({
+      trackId: PropTypes.number.isRequired,
+    })
+  ).isRequired,
   changeFavorite: PropTypes.func.isRequired,
 };
 

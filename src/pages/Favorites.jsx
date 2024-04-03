@@ -1,9 +1,9 @@
-import React from 'react';
-import Header from '../components/Header';
-import MusicCard from '../components/MusicCard';
-import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
-import Carregando from '../components/Carregando';
-import '../styles/favorites.css';
+import React from "react";
+import CanvasLoader from "../components/CanvasLoader";
+import Header from "../components/Header";
+import MusicCard from "../components/MusicCard";
+import { addSong, getFavoriteSongs, removeSong } from "../services/favoriteSongsAPI";
+import "./styles/favorites.css";
 
 class Favorites extends React.Component {
   state = {
@@ -27,58 +27,65 @@ class Favorites extends React.Component {
   };
 
   changeFavorite = (track) => {
-    this.setState({
-      loading: true,
-    }, async () => {
-      const { albumFavorites } = this.state;
-      const isFavoriteSong = albumFavorites
-        .some(({ trackId }) => track.trackId === trackId);
+    this.setState(
+      {
+        loading: true,
+      },
+      async () => {
+        const { albumFavorites } = this.state;
+        const isFavoriteSong = albumFavorites.some(
+          ({ trackId }) => track.trackId === trackId
+        );
 
-      if (isFavoriteSong) {
-        await removeSong(track);
-      } else {
-        await addSong(track);
+        if (isFavoriteSong) {
+          await removeSong(track);
+        } else {
+          await addSong(track);
+        }
+
+        const stateFavoriteSongs = await getFavoriteSongs();
+
+        this.setState({
+          albumFavorites: stateFavoriteSongs,
+          loading: false,
+        });
       }
-
-      const stateFavoriteSongs = await getFavoriteSongs();
-
-      this.setState({
-        albumFavorites: stateFavoriteSongs,
-        loading: false,
-      });
-    });
+    );
   };
 
   render() {
-    const {
-      albumFavorites,
-      loading,
-    } = this.state;
+    const { albumFavorites, loading } = this.state;
 
     return (
-      loading ? (
-        <Carregando />)
-        : (
-          <div data-testid="page-favorites">
-            <Header />
-            <div className="header-favoritos">
-              <h1>Favoritos</h1>
+      <div className='page-favorites-container'>
+        <Header />
+        <main className='main-favorites'>
+          {loading ? (
+            <div className='canvasLoader__container'>
+              <CanvasLoader id='canvas' width='250' height='250' />
             </div>
-            <div className="list-favorites">
-              {albumFavorites.map((music) => (
-                <MusicCard
-                  key={ music.trackId }
-                  trackId={ music.trackId }
-                  trackName={ music.trackName }
-                  previewUrl={ music.previewUrl }
-                  changeFavorite={ this.changeFavorite }
-                  trackInfo={ music }
-                  favList={ albumFavorites }
-                />
-              ))}
-            </div>
-          </div>
-        )
+          ) : (
+            <section data-testid='favorites-principal'>
+              <div className='top-principal-favorites'>
+                <h1>Favoritos</h1>
+              </div>
+              <div className='list-favorites'>
+                {albumFavorites.map((music) => (
+                  <MusicCard
+                    key={music.trackId}
+                    trackId={music.trackId}
+                    trackName={music.trackName}
+                    previewUrl={music.previewUrl}
+                    changeFavorite={this.changeFavorite}
+                    trackInfo={music}
+                    favList={albumFavorites}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
+        </main>
+      </div>
     );
   }
 }

@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Header from '../components/Header';
-import getMusics from '../services/musicsAPI';
-import Carregando from '../components/Carregando';
-import MusicCard from '../components/MusicCard';
-import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
-import '../styles/album.css';
+import PropTypes from "prop-types";
+import React from "react";
+import CanvasLoader from "../components/CanvasLoader";
+import Header from "../components/Header";
+import MusicCard from "../components/MusicCard";
+import { addSong, getFavoriteSongs, removeSong } from "../services/favoriteSongsAPI";
+import getMusics from "../services/musicsAPI";
+import "./styles/album.css";
 
 class Album extends React.Component {
   state = {
@@ -22,7 +22,11 @@ class Album extends React.Component {
   getMusicsInfo = async () => {
     this.setState({ loading: true });
 
-    const { match: { params: { id } } } = this.props;
+    const {
+      match: {
+        params: { id },
+      },
+    } = this.props;
     const album = await getMusics(id);
     const albumFavorites = await getFavoriteSongs();
 
@@ -35,67 +39,70 @@ class Album extends React.Component {
   };
 
   changeFavorite = (track) => {
-    this.setState({
-      loading: true,
-    }, async () => {
-      const { albumFavorites } = this.state;
-      const isFavoriteSong = albumFavorites
-        .some(({ trackId }) => track.trackId === trackId);
+    this.setState(
+      {
+        loading: true,
+      },
+      async () => {
+        const { albumFavorites } = this.state;
+        const isFavoriteSong = albumFavorites.some(
+          ({ trackId }) => track.trackId === trackId
+        );
 
-      if (isFavoriteSong) {
-        await removeSong(track);
-      } else {
-        await addSong(track);
+        if (isFavoriteSong) {
+          await removeSong(track);
+        } else {
+          await addSong(track);
+        }
+
+        const stateFavoriteSongs = await getFavoriteSongs();
+
+        this.setState({
+          albumFavorites: stateFavoriteSongs,
+          loading: false,
+        });
       }
-
-      const stateFavoriteSongs = await getFavoriteSongs();
-
-      this.setState({
-        albumFavorites: stateFavoriteSongs,
-        loading: false,
-      });
-    });
+    );
   };
 
   render() {
-    const {
-      loading,
-      albumInfo,
-      albumMusics,
-      albumFavorites,
-    } = this.state;
+    const { loading, albumInfo, albumMusics, albumFavorites } = this.state;
 
     return (
-      <div data-testid="page-album">
+      <div className='page-album-container' data-testid='page-album'>
         <Header />
-        {loading ? (<Carregando />
-        ) : (
-          <section className="album-principal">
-            <div className="top-principal-album">
-              <div className="display-top">
-                <h2 data-testid="artist-name">{albumInfo.artistName}</h2>
-                <h4 data-testid="album-name">{albumInfo.collectionName}</h4>
-              </div>
-              <div className="img-top-album">
-                <img src={ albumInfo.artworkUrl100 } alt={ albumInfo.collectionName } />
-              </div>
+        <main className='main-album'>
+          {loading ? (
+            <div className='canvasLoader__container'>
+              <CanvasLoader id='canvas' width='250' height='250' />
             </div>
-            <div className="musics">
-              {albumMusics
-                .map((music) => (
+          ) : (
+            <section className='album-principal'>
+              <div className='top-principal-album'>
+                <div className='display-top'>
+                  <h2 data-testid='artist-name'>{albumInfo.artistName}</h2>
+                  <h4 data-testid='album-name'>{albumInfo.collectionName}</h4>
+                </div>
+                <div className='img-top-album'>
+                  <img src={albumInfo.artworkUrl100} alt={albumInfo.collectionName} />
+                </div>
+              </div>
+              <div className='list-musics'>
+                {albumMusics.map((music) => (
                   <MusicCard
-                    key={ music.trackId }
-                    trackId={ music.trackId }
-                    trackName={ music.trackName }
-                    previewUrl={ music.previewUrl }
-                    changeFavorite={ this.changeFavorite }
-                    trackInfo={ music }
-                    favList={ albumFavorites }
+                    key={music.trackId}
+                    trackId={music.trackId}
+                    trackName={music.trackName}
+                    previewUrl={music.previewUrl}
+                    changeFavorite={this.changeFavorite}
+                    trackInfo={music}
+                    favList={albumFavorites}
                   />
                 ))}
-            </div>
-          </section>
-        )}
+              </div>
+            </section>
+          )}
+        </main>
       </div>
     );
   }

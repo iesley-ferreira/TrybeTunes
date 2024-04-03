@@ -1,0 +1,119 @@
+.topArtists__card__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 30px;
+  padding-top: 38px;
+  width: 100%;
+}
+
+.topArtists__card__container h3 {
+  padding: 0 0px 40px 40px;
+  display: flex;
+  font-size: 1.2rem;
+  color: rgba(65, 62, 62, 0.562);
+  align-items: flex-start;
+}
+
+.card-container {
+  gap: 26px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.image-content {
+  position: relative;
+  height: 100%;
+  padding: 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.text__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text__content h3 {
+  color: rgb(77, 71, 71);
+  font-size: 0.9rem;
+  padding: 0;
+}
+
+.needle-image {
+  position: absolute;
+  top: 12px;
+  left: 38px;
+  object-fit: cover;
+  transform: rotate(-28deg);
+  opacity: 0.9;
+}
+
+.needle-image img {
+  width: 20px;
+  height: 20px;
+}
+
+.card-image:hover {
+  cursor: pointer;
+  /* transform: scale(1.05); */
+  border-radius: 20px;
+  padding: 11px;
+  background-color: rgba(63, 63, 53, 0.651);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+.card-image img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+}
+
+.card-image:hover .rotating-image {
+  animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card-image::before {
+  background-color: rgba(14, 13, 13, 0.925);
+  width: 36px;
+  height: 36px;
+  top: 50%;
+  left: 50%;
+}
+
+.card-image::after {
+  background-color: rgb(194, 197, 202);
+  width: 12px;
+  height: 12px;
+  top: 50%;
+  left: 50%;
+}

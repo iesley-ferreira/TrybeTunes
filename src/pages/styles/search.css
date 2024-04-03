@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "ITC Avant Garde Gothic Bk";
+}
+
+.page-search-container {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-image: url("/home/ie/TRYBE/projetos/Trybe-Tunes/sd-031-b-project-trybetunes/src/assets/background5.jpg");
+}
+
+.principal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-search {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0 20px 0;
+  width: 40%;
+}
+
+.main-search {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.page-search {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+.resultado-pesquisa {
+  margin-top: 60px;
+}
+
+.input-search {
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow:
+    rgba(0, 0, 0, 0.603) 0px 2px 4px,
+    rgba(0, 0, 0, 0.534) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset,
+    rgba(0, 0, 0, 0.466) 0px 22px 70px 4px;
+  background-color: rgba(82, 84, 94, 0.466);
+  padding: 12px;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: #454640;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+.input-search:hover {
+  box-shadow: 0 2px 2px 5px rgba(30, 32, 39, 0.336);
+}
+
+.input-search:focus {
+  box-shadow: 0 0 0 3px rgba(65, 64, 56, 0.548);
+  outline: none;
+  border: none;
+  caret-color: rgb(255, 249, 10);
+  /* transition: 0.4s; */
+}
+
+.input-search:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.label-search {
+  min-width: 80%;
+}
+
+.button-search {
+  background-color: rgb(255, 249, 10);
+  border: none;
+  border-radius: 4px;
+  box-shadow:
+    rgba(0, 0, 0, 0.603) 0px 2px 4px,
+    rgba(0, 0, 0, 0.534) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  color: rgb(61, 61, 57);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  padding: 12px;
+  width: 100px;
+}
+
+.button-search:disabled {
+  /* background-color: #959e44a2; */
+  /* box-shadow: 0 2px 4px rgba(0.3, 0.3, 0.3, 0.4); */
+  /* color: rgba(80, 77, 53, 0.664); */
+  cursor: not-allowed;
+}
+
+.artista-nao-encontrado {
+  font-size: 30px;
+  font-weight: 900;
+  padding-top: 400px;
+  position: relative;
+}
+
+.canvasLoader__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  /* AJUSTAR */
+  height: 100%;
+}
+
+@media (max-width: 1300px) {
+  .form-search {
+    width: 60%;
+  }
+}

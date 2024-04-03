@@ -1,12 +1,12 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { createUser } from '../services/userAPI';
-import Carregando from '../components/Carregando';
-import '../styles/login.css';
+import React from "react";
+import { Redirect } from "react-router-dom";
+import logo from "../assets/trybeTunes-logo.png";
+import SoundWave from "../components/SoundWave";
+import { createUser } from "../services/userAPI";
+import "./styles/Login.css";
 
 class Login extends React.Component {
   state = {
-    loading: false,
     disabled: true,
     redirect: false,
   };
@@ -37,53 +37,47 @@ class Login extends React.Component {
   };
 
   render() {
-    const { loading, disabled, redirect } = this.state;
+    const { disabled, redirect } = this.state;
     if (redirect) {
-      return (
-        <Redirect to="/search" />
-      );
+      return <Redirect to='/search' />;
     }
-    return (
-      <div className="fundo-login">
-        {
-          loading ? <div className="carregando-centro"><Carregando /></div> : (
-            <div data-testid="page-login" className="page-login">
-              <div className="white-box-login">
-                <div className="center-login">
-                  <div className="logo-login">
-                    <h1>
-                      Trybe
-                    </h1>
-                    <h1>
-                      Tunes
-                    </h1>
-                  </div>
-                  <form className="login-box">
-                    <input
-                      className="input-login"
-                      type="text"
-                      spellCheck="false"
-                      data-testid="login-name-input"
-                      name="user"
-                      placeholder="qual é o seu nome?"
-                      onChange={ this.handleChange }
-                    />
-                    <button
-                      className="button-login"
-                      type="submit"
-                      data-testid="login-submit-button"
-                      disabled={ disabled }
-                      onClick={ this.submit }
-                    >
-                      Entrar
 
-                    </button>
-                  </form>
+    return (
+      <div className='fundo-login'>
+        <div data-testid='page-login' className='page-login'>
+          <div className='white-box-login'>
+            <div className='center-login'>
+              <div className='logo-login'>
+                <div>
+                  <img src={logo} alt='TrybeTunes-logo' />
+                </div>
+                <div>
+                  <SoundWave />
                 </div>
               </div>
+              <form className='login-box'>
+                <input
+                  className='input-login'
+                  type='text'
+                  spellCheck='false'
+                  data-testid='login-name-input'
+                  name='user'
+                  placeholder='qual é o seu nome?'
+                  onChange={this.handleChange}
+                />
+                <button
+                  className='button-login'
+                  type='submit'
+                  data-testid='login-submit-button'
+                  disabled={disabled}
+                  onClick={this.submit}
+                >
+                  Entrar
+                </button>
+              </form>
             </div>
-          )
-        }
+          </div>
+        </div>
       </div>
     );
   }
