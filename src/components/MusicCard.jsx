@@ -3,7 +3,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useLoading } from "../context/TrybeTunesContext";
-import Carregando from "./Carregando";
+import CanvasLoader from "./CanvasLoader";
 import Liked from "./Liked";
 import NoLiked from "./NoLiked";
 import "./styles/musicCard.css";
@@ -27,7 +27,7 @@ function MusicCard(props) {
     getFavorite();
   };
 
-  if (loading) return <Carregando />;
+  if (loading) return <CanvasLoader />;
 
   return (
     <div className='music-card-container'>
