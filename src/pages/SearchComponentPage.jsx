@@ -86,7 +86,7 @@ const SearchComponentPage = () => {
             disabled={disabled}
             onClick={handleClick}
           >
-            Pesquisar
+            Search
           </button>
         </form>
 

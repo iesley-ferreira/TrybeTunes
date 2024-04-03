@@ -39,7 +39,7 @@ const Header = () => {
               data-testid='link-to-favorites'
             >
               <i className='fa-regular fa-star' />
-              &nbsp;&nbsp; Favoritas
+              &nbsp;&nbsp; Favorites
             </NavLink>
           </li>
           <li className='li-header'>
@@ -55,7 +55,7 @@ const Header = () => {
         </ul>
 
         <div className='bem-vindo-header'>
-          <h1 data-testid='header-user-name'>Bem vindo: {userName}</h1>
+          <h1 data-testid='header-user-name'>Well Come: {userName}</h1>
         </div>
       </div>
     </header>

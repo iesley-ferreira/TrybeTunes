@@ -105,8 +105,7 @@
   line-height: 1.5;
   font-weight: 900;
   letter-spacing: 0.3px;
-  padding: 12px;
-  width: 100px;
+  padding: 12px 28px 10px;
 }
 
 .button-search:disabled {

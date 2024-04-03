@@ -55,6 +55,7 @@
 
 .li-header a {
   padding: 14px 50px;
+  font-weight: 900;
 }
 
 /* .li-header:hover:not(.selected) {
